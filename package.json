@@ -8,8 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "start": "cross-env NODE_ENV=production nodemon index.js",
     "lint": "eslint .",
-    "format": "eslint . --fix",
-    "pre-heroku": "cd client && npm run build"
+    "format": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -22,15 +21,20 @@
   },
   "homepage": "https://github.com/ruoyann/peacock#readme",
   "dependencies": {
+    "@material-ui/core": "^4.12.2",
     "axios": "^0.21.1",
+    "cross": "^1.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
+    "env": "0.0.2",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.12",
-    "socket.io": "^4.1.2"
+    "reactjs": "^1.0.0",
+    "socket.io": "^4.1.3",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^7.30.0"
+    "eslint": "^7.31.0"
   }
 }

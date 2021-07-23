@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+// import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -44,7 +45,7 @@ const Header = () => {
               className={classes.title}
               style={{ color: "#ff5138" }}
             >
-              Pavo
+              Peacock
             </Typography>
           </Link>
           <Link style={navStyle} to="/help">

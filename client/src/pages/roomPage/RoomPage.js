@@ -37,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 const RoomPage = () => {
   const roomCode = window.location.href.split('/').slice(-1)[0]; // get last fragment of url
   const [users, setUsers] = useState(1);
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState({
+    users: []
+  });
   const [roomStart, setRoomStart] = useState(false);
   const location = useLocation();
   const host = location.state.host;
@@ -52,7 +54,6 @@ const RoomPage = () => {
 
   useEffect(() => {
     socket.connect();
-
     socket.emit('userJoined', {roomCode: roomCode, username: username}, ({started}) => {
       setRoomStart(started);
     });
@@ -60,8 +61,9 @@ const RoomPage = () => {
     socket.on('update_user', (content) => {
       setUsers(content.users.length)
       setContent(content.users);
+      console.log("content users", content.users, username)
       // setRoomStart(content.started);
-      if (content.users.findIndex(user => user.username === username) === -1) {
+      if (username.length !== 0 && content.users.findIndex(user => user.username === username) === -1) {
         history.push("/");
         alert("Sorry, you have been removed by the host");
       }
@@ -71,6 +73,7 @@ const RoomPage = () => {
       setRoomStart(content.start)
     })
   }, [])
+  console.log("username outisde use effect", username)
 
 
   return roomStart 

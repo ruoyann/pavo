@@ -4,10 +4,10 @@ import MakeClassroomButton from "./components/makeClassroomButton";
 import Typography from "@material-ui/core/Typography";
 import UsernameInput from "./components/usernameInput";
 
-import Logo from "../../assets/pavo_logo.svg"
+import Logo from "./pavo.png";
 
 import { useSound } from "use-sound";
-import sound from "../../assets/peacockSound.m4a";
+import sound from "./peacockSound.m4a";
 
 const Homepage = () => {
   const [username, setUsername] = useState("");
@@ -19,11 +19,10 @@ const Homepage = () => {
         alt="..."
         onClick={play}
         style={{ width: "400px", height: "300px" }}
-        className="logo"
       />
       <UsernameInput setUsername={setUsername} />
       <ClassroomLogin username={username} />
-      <Typography variant="h6">or</Typography>
+      {/* <Typography variant="h6">or</Typography> */}
       <MakeClassroomButton username={username} />
     </div>
   );
