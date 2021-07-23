@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === 'production') {
   })
 }
 
-app.use('/', express.static('build')) // look in the build directory to serve frontend
+app.use('/', express.static('client/build')) // look in the build directory to serve frontend
 
 app.use(cors())
 app.use(express.json())
