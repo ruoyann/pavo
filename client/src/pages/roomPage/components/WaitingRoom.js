@@ -77,7 +77,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
         </Typography>
         <img
           src={Logo}
-          style={{ width: "400px", height: "300px", margin: 30 }}
+          style={{ width: "50%", height: "50%", margin: 30 }}
         />
         <Typography variant="h3"> Name </Typography>
       </div>
