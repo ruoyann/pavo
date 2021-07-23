@@ -37,15 +37,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MakeClassroomButton = ({ username }) => {
+const MakeClassroomButton = ({ username, setInvalidUsername }) => {
   const classes = useStyles();
   const history = useHistory();
 
   const handleMakeClass = () => {
     if (username === "") {
-      alert("Please enter a username");
+      setInvalidUsername(true);
     } else {
-      // history.push(`/createClassroom`, { host: true, username: username });
+      setInvalidUsername(false);
       handleCreate();
     }
   };

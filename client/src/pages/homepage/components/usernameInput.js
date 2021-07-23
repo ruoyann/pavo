@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UsernameInput = ({ setUsername }) => {
+const UsernameInput = ({ setUsername, invalidUsername }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -54,6 +54,8 @@ const UsernameInput = ({ setUsername }) => {
         name="name"
         className={classes.textField}
         onChange={handleChange}
+        helperText={invalidUsername ? "Please enter a username" : ""}
+        error={invalidUsername}
       />
     </div>
   );
