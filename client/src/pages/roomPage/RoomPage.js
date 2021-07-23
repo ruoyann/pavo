@@ -72,7 +72,7 @@ const RoomPage = () => {
     socket.on('update_session_start', (content) => {
       setRoomStart(content.start)
     })
-  }, [username])
+  }, [])
   console.log("username outisde use effect", username)
 
 
