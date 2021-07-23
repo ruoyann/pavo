@@ -59,7 +59,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
     return (
       <li>
         {user.username}
-        {host && user.username !== currentUser.username && (
+        {host && user.userID !== currentUser.userID && (
           <IconButton edge="end" onClick={() => removeUser(user)}>
             <DeleteIcon />
           </IconButton>

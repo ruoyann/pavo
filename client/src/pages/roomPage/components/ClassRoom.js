@@ -41,22 +41,28 @@ const Classroom = ({host, roomCode, content, currentUser}) => {
 
     socket.on("share-whiteboard", (data) => {
       const index = shareWhiteboards.findIndex(whiteboard => whiteboard.roomCode === data.roomCode && 
-        whiteboard.username === data.username);
-      if (index === -1 && data.roomCode === roomCode && data.username !== currentUser.username) {
+        whiteboard.user.userID === data.user.userID);
+      if (index === -1 && data.roomCode === roomCode && data.user.userID !== currentUser.userID) {
         setShareWhiteboards([...shareWhiteboards, data])
       }
     })
 
     socket.on("stop-share", (data) => {
-      const index = shareWhiteboards.findIndex(whiteboard => whiteboard.roomCode === data.roomCode && whiteboard.username === data.username);
-      if (index !== -1 && data.username !== currentUser.username) {
+      const index = shareWhiteboards.findIndex(whiteboard => whiteboard.roomCode === data.roomCode && whiteboard.user.userID === data.user.userID);
+      if (index !== -1 && data.userID !== currentUser.username) {
         const newWhiteboard = shareWhiteboards.filter(whiteboard => whiteboard.roomCode !== data.roomCode || whiteboard.username !== data.username)
-        console.log("new whiteboards are", newWhiteboard, "original", shareWhiteboards)
         setShareWhiteboards(newWhiteboard);
       }
     })
 
-    const filteredContent = content.filter(x => x.username !== currentUser.username)
+    const filteredContent = content.filter(x => x.userID !== currentUser.userID).map(x => {
+      return ({
+        user: {
+          userID: x.userID, 
+          username: x.username
+        }
+      });
+    })
 
     return (
       <Grid container spacing={2}>

@@ -5,10 +5,11 @@ import socket from "../../../socket"
 import { List, ListItem, Grid, Typography } from '@material-ui/core';
 
 const UserWhiteboard = (root) => (whiteboard) => {
+    console.log("white board is", whiteboard)
     return (
         <Grid container spacing={2} justifyContent="flex-start">
                 <Board color={root.state.color} size={root.state.size} 
-                roomCode={root.props.roomCode} username={whiteboard.username} image={whiteboard.image}
+                roomCode={root.props.roomCode} user={whiteboard.user} image={whiteboard.image}
                 eraseMode ={root.state.erase} currentUser={root.props.currentUser}/>
         </Grid>
     );
@@ -41,7 +42,7 @@ class Container extends React.Component
 
     clearWhiteboard = () => {
         socket.connect();
-        socket.emit("clear", {roomCode: this.props.roomCode, username: this.props.username});
+        socket.emit("clear", {roomCode: this.props.roomCode, user: this.props.user});
     }
 
     changeEraseMode = () => {
@@ -100,7 +101,7 @@ class Container extends React.Component
             </Grid>                            
             <Grid item xs={10}>
                     {!this.props.host && this.props.shareWhiteboards.map(UserWhiteboard(this))}
-                    {UserWhiteboard(this)(this.props.currentUser)}
+                    {UserWhiteboard(this)({user: this.props.currentUser})}
                     {this.props.host && !this.state.focus && this.props.content.map(UserWhiteboard(this))}
             </Grid>
         </Grid>

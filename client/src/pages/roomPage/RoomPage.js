@@ -43,8 +43,7 @@ const RoomPage = () => {
   const [roomStart, setRoomStart] = useState(false);
   const location = useLocation();
   const host = location.state.host;
-  const username = location.state.username;
-  const currentUser = {username};
+  const currentUser = location.state.user;
   const history = useHistory();
 
   // Ensures user leave when closing tab
@@ -54,16 +53,15 @@ const RoomPage = () => {
 
   useEffect(() => {
     socket.connect();
-    socket.emit('userJoined', {roomCode: roomCode, username: username}, ({started}) => {
+    socket.emit('userJoined', {roomCode: roomCode, user: currentUser}, ({started}) => {
       setRoomStart(started);
     });
 
     socket.on('update_user', (content) => {
       setUsers(content.users.length)
       setContent(content.users);
-      console.log("content users", content.users, username)
       // setRoomStart(content.started);
-      if (username.length !== 0 && content.users.findIndex(user => user.username === username) === -1) {
+      if (currentUser.username.length !== 0 && content.users.findIndex(user => user.userID === currentUser.userID) === -1) {
         history.push("/");
         alert("Sorry, you have been removed by the host");
       }
@@ -73,7 +71,6 @@ const RoomPage = () => {
       setRoomStart(content.start)
     })
   }, [])
-  console.log("username outisde use effect", username)
 
 
   return roomStart 

@@ -7,15 +7,22 @@ const randomId = (bytes) => crypto.randomBytes(bytes).toString('hex')
 module.exports = (io, socket) => {
   const createRoom = (user) => {
     const roomCode = randomId(2)
-    addRoom(roomCode, user)
-    socket.emit('create', roomCode)
+    const hostID = randomId(3);
+    const host = {
+      username: user.username,
+      userID: hostID
+    }
+    addRoom(roomCode, host)
+    socket.emit('create', {roomCode: roomCode, host: host})
     socket.join(roomCode)
   }
 
   const onJoining = async (data, callback) => {
     const roomCode = data.roomCode;
+    const id = randomId(3);
     const user = {
-      username: data.username
+      username: data.username, 
+      userID: id, 
     }
     const matchingSockets = await io.in(roomCode).allSockets()
     const roomExists = matchingSockets.size >= 1
@@ -24,20 +31,16 @@ module.exports = (io, socket) => {
       addUserToRoom(roomCode, user)
       socket.join(roomCode)
       const room = getRoom(roomCode)
-      callback({})
+      callback({user: user})
     } else {
       callback({ error: 'The room code does not exist'})
     }
   }
 
   const joinedRoom = (data, callback) => {
-    const user = {username: data.username};
+    const user = data.user;
     const roomCode = data.roomCode;
-    // Emit session details (unused for now)
-    socket.emit('session', {
-      username: user.username
-    })
-    const room = getRoom(roomCode)
+    const room = getRoomWith(user)
     if (room) {
       // Broadcast number of users in the room
       io.to(roomCode).emit('update_user', {
@@ -79,11 +82,15 @@ module.exports = (io, socket) => {
     io.to(data.roomCode).emit('stop-share', data)
   }
 
+  const onGetWhiteboards = (data) => {
+    io.to(data.roomCode).emit('get-whiteboards', data)
+  }
+
   const onRemoveUser = (data) => {
     removeUserFromRoom(data.roomCode, data.user)
     const room = getRoom(data.roomCode)
     if (room) {
-      const newUsers = room.users.filter(x => x.username !== data.user.username)
+      const newUsers = room.users.filter(x => x.userID !== data.user.userID)
       removeUserFromRoom(data.roomCode, data.user)
       io.to(data.roomCode).emit('update_user', {
         users: newUsers
@@ -101,4 +108,5 @@ module.exports = (io, socket) => {
   socket.on('share-whiteboard', onShareWhiteboard)
   socket.on('stop-share', onStopShare)
   socket.on('remove-user', onRemoveUser)
+  socket.on('get-whiteboards', onGetWhiteboards)
 }

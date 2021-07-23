@@ -18,8 +18,6 @@ function App() {
 
   return (
     <Router>
-      {/* <Header></Header> */}
-
       <Switch>
         <Route exact path="/">
           <div className="App">

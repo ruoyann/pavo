@@ -72,11 +72,11 @@ const Classroomlogin = ({ username }) => {
       socket.emit(
         "joining",
         { roomCode: code, username: username },
-        ({ error }) => {
+        ({ error, user }) => {
           if (error) {
             alert(error);
           } else {
-            history.push(`/room/${code}`, { host: false, username: username });
+            history.push(`/room/${code}`, { host: false, user: user });
           }
         }
       );

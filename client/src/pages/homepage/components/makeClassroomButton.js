@@ -52,8 +52,10 @@ const MakeClassroomButton = ({ username }) => {
 
   useEffect(() => {
     socket.connect();
-    socket.once("create", (roomCode) => {
-      history.push(`/room/${roomCode}`, { host: true, username: username });
+    socket.once("create", (data) => {
+      const roomCode = data.roomCode;
+      const user = data.host;
+      history.push(`/room/${roomCode}`, { host: true, user: user });
     });
   }, [username]);
 

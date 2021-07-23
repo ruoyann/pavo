@@ -20,10 +20,9 @@ const removeRoom = (roomCode) => {
 
 const addUserToRoom = (roomCode, currentUser) => {
   const room = rooms.find(room => room.roomCode === roomCode)
-  console.log("coming into add user to room")
   if (room) {
     const users = room.users
-    const userExist = users.find(user => user.username === currentUser.username)
+    const userExist = users.find(user => user.userID === currentUser.userID)
     if (!userExist) {
       users.push(currentUser)
     }
@@ -37,7 +36,7 @@ const removeUserFromRoom = (roomCode, currentUser) => {
   const room = rooms.find(room => room.roomCode === roomCode)
   if (room) {
     const users = room.users
-    const index = users.findIndex(user => user.username === currentUser.username)
+    const index = users.findIndex(user => user.userID === currentUser.userID)
     if (index !== -1) {
       room.users.splice(index, 1)
       if (users.length === 0) {
@@ -52,7 +51,7 @@ const getRoom = (roomCode) => {
 }
 
 const getRoomWith = (currentUser) => {
-  const result = rooms.find(room => room.users.find(user => user.username.localeCompare(currentUser.username) === 0));
+  const result = rooms.find(room => room.users.find(user => user.userID === currentUser.userID));
   return result;
 }
 
