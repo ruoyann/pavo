@@ -17,34 +17,26 @@ class Board extends React.Component {
         this.state = {
             shared: false, 
         }
-        socket.connect();
         socket.on("canvas-data", function(data){
             if (data.roomCode.localeCompare(props.roomCode) !== 0 || 
                 data.username.localeCompare(props.username) !== 0) {
                     return;
                 }
             var root = this;
-                    var interval = setInterval(function(){
-                    if(root.isDrawing) return;
-                    root.isDrawing = true;
-                    clearInterval(interval);
-                    var image = new Image();
-                    var canvas = document.querySelector(`#board-${props.roomCode}-${props.username}`);
-                    var ctx = canvas.getContext('2d');
-                    image.onload = function() {
-                        ctx.drawImage(image, 0, 0);
-                        root.isDrawing = false;
-                    };
-                    image.src = data.image;
-                }, 200)
-        })
+            var interval = setInterval(function(){
+                if(root.isDrawing) return;
+                root.isDrawing = true;
+                clearInterval(interval);
+                var image = new Image();
+                var canvas = document.querySelector(`#board-${props.roomCode}-${props.username}`);
+                var ctx = canvas.getContext('2d');
+                image.onload = function() {
+                    ctx.drawImage(image, 0, 0);
 
-        socket.on("get-whiteboards", (data) => {
-            if (data.roomCode === props.roomCode && data.user.username !== props.username && props.currentUser.username !== data.user.username) {
-                var canvas = document.querySelector(`#board-${this.props.roomCode}-${this.props.username}`);
-                var base64ImageData = canvas.toDataURL("image/png");
-                socket.emit("canvas-data", {image: base64ImageData, roomCode: this.props.roomCode, username: this.props.username});
-            }
+                    root.isDrawing = false;
+                };
+                image.src = data.image;
+            }, 200)
         })
 
         socket.on("clear", (data) => {
@@ -52,9 +44,9 @@ class Board extends React.Component {
                 const canvas = document.getElementById(`board-${this.props.roomCode}-${this.props.username}`);
                 const ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                console.log("coming into clear")
             }
         })
-
         this.handleShare = this.handleShare.bind(this)
         this.stopShare = this.stopShare.bind(this)
     }
@@ -116,7 +108,7 @@ class Board extends React.Component {
             ctx.closePath();
             ctx.stroke();
 
-            if(root.timeout !== undefined) clearTimeout(root.timeout);
+            if(root.timeout != undefined) clearTimeout(root.timeout);
             root.timeout = setTimeout(function(){
                 var base64ImageData = canvas.toDataURL("image/png");
                 socket.emit("canvas-data", {image: base64ImageData, roomCode: root.props.roomCode, username: root.props.username});
@@ -147,19 +139,11 @@ class Board extends React.Component {
                 ctx.drawImage(image, 0, 0);
             };
             image.src = this.props.image;
-            return;
         }
         const canvas = document.getElementById(`board-${this.props.roomCode}-${this.props.username}`);
         var ctx = canvas.getContext('2d');
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    clearWhiteboard = () => {
-        const canvas = document.getElementById(`board-${this.props.roomCode}-${this.props.username}`);
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        socket.emit("clear", {roomCode: this.props.roomCode, username: this.props.username})
     }
 
     render() {
@@ -173,12 +157,10 @@ class Board extends React.Component {
                 : <Button onClick={this.handleShare}>
                 Share whiteboard
             </Button>}
-                    <Button onClick={this.clearWhiteboard.bind(this)}>
-                        Clear whiteboard
-                    </Button>
+                
                 <div class="sketch" id={`sketch-${this.props.roomCode}-${this.props.username}`}>
                     <canvas className="board" id={`board-${this.props.roomCode}-${this.props.username}`} 
-                    style={{border:"1px solid #000000"}} width="300" height="800"></canvas>
+                    style={{border:"1px solid #000000"}}></canvas>
                 </div>
             </div>
         )

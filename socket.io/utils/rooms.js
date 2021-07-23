@@ -3,7 +3,7 @@ const rooms = []
 const addRoom = (roomCode, host) => {
   const newRoom = {
     roomCode,
-    users: [host],
+    users: [host], 
     started: false,
     host: host,
   }
@@ -20,6 +20,7 @@ const removeRoom = (roomCode) => {
 
 const addUserToRoom = (roomCode, currentUser) => {
   const room = rooms.find(room => room.roomCode === roomCode)
+  console.log("coming into add user to room")
   if (room) {
     const users = room.users
     const userExist = users.find(user => user.username === currentUser.username)
@@ -71,6 +72,6 @@ module.exports = {
   removeUserFromRoom,
   getRoom,
   getRoomWith,
-  getAllRooms,
+  getAllRooms, 
   startRoom
 }

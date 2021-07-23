@@ -1,4 +1,4 @@
-const { addUserToRoom, removeUserFromRoom, getRoomWith, startRoom, getRoom } = require('./utils/rooms')
+const { addUserToRoom, addRoom, removeUserFromRoom, getRoomWith, startRoom, getRoom } = require('./utils/rooms')
 const logger = require('../utils/logger')
 
 const crypto = require('crypto')
@@ -7,7 +7,7 @@ const randomId = (bytes) => crypto.randomBytes(bytes).toString('hex')
 module.exports = (io, socket) => {
   const createRoom = (user) => {
     const roomCode = randomId(2)
-    addUserToRoom(roomCode, user)
+    addRoom(roomCode, user)
     socket.emit('create', roomCode)
     socket.join(roomCode)
   }
@@ -37,16 +37,14 @@ module.exports = (io, socket) => {
     socket.emit('session', {
       username: user.username
     })
-
-    const room = getRoomWith(user)
+    const room = getRoom(roomCode)
     if (room) {
       // Broadcast number of users in the room
       io.to(roomCode).emit('update_user', {
-        users: room.users, 
+        users: room.users,
       })
       callback({started: room.started})
     }
-
   }
 
   const leaveRoom = (user) => {
@@ -87,14 +85,10 @@ module.exports = (io, socket) => {
     if (room) {
       const newUsers = room.users.filter(x => x.username !== data.user.username)
       removeUserFromRoom(data.roomCode, data.user)
-      io.to(data.roomCode).emit("update_user", {
+      io.to(data.roomCode).emit('update_user', {
         users: newUsers
       })
     }
-  }
-
-  const onGetWhiteboards = (data) => {
-    io.to(data.roomCode).emit("get-whiteboards", data)
   }
 
   socket.on('create', createRoom)
@@ -104,8 +98,7 @@ module.exports = (io, socket) => {
   socket.on('startSession', start)
   socket.on('canvas-data', canvas_data)
   socket.on('clear', clear);
-  socket.on("share-whiteboard", onShareWhiteboard)
-  socket.on("stop-share", onStopShare)
-  socket.on("remove-user", onRemoveUser)
-  socket.on("get-whiteboards", onGetWhiteboards)
+  socket.on('share-whiteboard', onShareWhiteboard)
+  socket.on('stop-share', onStopShare)
+  socket.on('remove-user', onRemoveUser)
 }

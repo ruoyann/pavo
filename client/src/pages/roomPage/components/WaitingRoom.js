@@ -12,7 +12,12 @@ import "./WaitingRoom.css";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(1),
+    background: "#d6336c",
+    color: "white",
+    height: 70,
+    width: 400,
+    fontSize: 30,
+    margin: theme.spacing(3),
   },
   leftIcon: {
     marginRight: theme.spacing(1),
@@ -88,6 +93,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
           type="submit"
           variant="contained"
           color="default"
+          size="large"
           className={classes.button}
           onClick={startSession}
         >
