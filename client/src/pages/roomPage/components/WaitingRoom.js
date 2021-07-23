@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import socket from "../../../socket";
-import Logo from "../../../assets/pavo_logo.svg";
+import Logo from "../../homepage/pavo.png";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { Grid } from "@material-ui/core";
 import "./WaitingRoom.css";
+import Footer from "../../../components/footer";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -32,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -75,7 +76,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
         <Typography variant="h3" style={{ margin: 10 }}>
           Session Leader
         </Typography>
-        <img src={Logo} style={{ width: "50%", height: "50%", margin: 30 }} />
+        <img src={Logo} style={{ width: "50%", minWidth: "50%" }} />
         <Typography variant="h3"> Name </Typography>
       </div>
       <div className="users">
@@ -102,6 +103,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
           Please wait for host to start meeting
         </Typography>
       )}
+      <Footer />
     </div>
   );
 };
