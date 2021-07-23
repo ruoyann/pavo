@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
+const WaitingRoom = ({ host, roomHost, roomCode, users, content, currentUser }) => {
   const classes = useStyles();
 
   const startSession = () => {
@@ -75,7 +75,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
           Session Leader
         </Typography>
         <img src={Logo} alt="logo" style={{ width: "50%", minWidth: "50%" }} />
-        <Typography variant="h3"> Name </Typography>
+        <Typography variant="h3"> {roomHost.username} </Typography>
       </div>
       <div className="users">
         <Typography variant="h6">

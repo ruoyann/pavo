@@ -11,6 +11,7 @@ const RoomPage = () => {
     users: []
   });
   const [roomStart, setRoomStart] = useState(false);
+  const [roomHost, setRoomHost] = useState({});
   const location = useLocation();
   const host = location.state.host;
   const currentUser = location.state.user;
@@ -31,6 +32,7 @@ const RoomPage = () => {
       console.log(content)
       setUsers(content.users.length)
       setContent(content.users);
+      setRoomHost(content.roomHost);
       // setRoomStart(content.started);
       if (currentUser.username.length !== 0 && content.users.findIndex(user => user.userID === currentUser.userID) === -1) {
         history.push("/");
@@ -55,6 +57,7 @@ const RoomPage = () => {
     />
     : <WaitingRoom 
     host={host}
+    roomHost={roomHost}
     roomCode={roomCode}
     users={users}
     content={content}

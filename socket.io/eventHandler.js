@@ -1,4 +1,4 @@
-const { addUserToRoom, addRoom, removeUserFromRoom, getRoomWith, startRoom, getRoom } = require('./utils/rooms')
+const { addUserToRoom, addRoom, removeUserFromRoom, getRoomWith, startRoom, getRoom, getHostFromRoom } = require('./utils/rooms')
 const logger = require('../utils/logger')
 
 const crypto = require('crypto')
@@ -45,6 +45,7 @@ module.exports = (io, socket) => {
       // Broadcast number of users in the room
       io.to(roomCode).emit('update_user', {
         users: room.users,
+        roomHost: getHostFromRoom(roomCode)
       })
       callback({started: room.started})
     }
