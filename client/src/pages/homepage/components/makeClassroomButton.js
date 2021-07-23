@@ -54,7 +54,7 @@ const MakeClassroomButton = ({ username, setInvalidUsername }) => {
     socket.once("create", (data) => {
       const roomCode = data.roomCode;
       const user = data.host;
-      history.push(`/room/${roomCode}`, { host: true, user: user });
+      history.push(`/room/${roomCode}`, { isHost: true, user: user });
     });
   }, [username]);
 

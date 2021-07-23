@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const WaitingRoom = ({
-  host,
+  isHost,
   roomHost,
   roomCode,
   users,
@@ -59,13 +59,13 @@ const WaitingRoom = ({
     socket.emit("remove-user", { user: user, roomCode: roomCode });
   };
 
-  const ParticipantDisplay = (host) => (user) => {
+  const ParticipantDisplay = (isHost) => (user) => {
     return (
       <li>
         {roomHost.username === user.username
           ? roomHost.username + " [Host]"
           : user.username}
-        {host && user.userID !== currentUser.userID && (
+        {isHost && user.userID !== currentUser.userID && (
           <IconButton edge="end" onClick={() => removeUser(user)}>
             <DeleteIcon />
           </IconButton>
@@ -90,10 +90,10 @@ const WaitingRoom = ({
         <Typography variant="h6">
           Users in room: {users} <br />
           List of users:
-          <ol>{content.length > 0 && content.map(ParticipantDisplay(host))}</ol>
+          <ol>{content.length > 0 && content.map(ParticipantDisplay(isHost))}</ol>
         </Typography>
       </div>
-      {host && (
+      {isHost && (
         <Button
           type="submit"
           variant="contained"
@@ -105,7 +105,7 @@ const WaitingRoom = ({
           Start session
         </Button>
       )}
-      {!host && (
+      {!isHost && (
         <Typography variant="h6">
           Please wait for host to start meeting
         </Typography>

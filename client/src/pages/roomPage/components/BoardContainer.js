@@ -84,7 +84,7 @@ class Container extends React.Component {
                 </Button>
               </ListItem>
               <ListItem>
-                {this.props.host && (
+                {this.props.isHost && (
                   <Button
                     onClick={() => {
                       if (this.state.focus) {
@@ -107,10 +107,10 @@ class Container extends React.Component {
           </div>
         </Grid>
         <Grid item xs={10}>
-          {!this.props.host &&
+          {!this.props.isHost &&
             this.props.shareWhiteboards.map(UserWhiteboard(this))}
           {UserWhiteboard(this)({user: this.props.currentUser})}
-          {this.props.host &&
+          {this.props.isHost &&
             !this.state.focus &&
             this.props.content.map(UserWhiteboard(this))}
         </Grid>

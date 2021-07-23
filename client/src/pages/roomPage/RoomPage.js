@@ -13,7 +13,7 @@ const RoomPage = () => {
   const [roomStart, setRoomStart] = useState(false);
   const [roomHost, setRoomHost] = useState({});
   const location = useLocation();
-  const host = location.state.host;
+  const isHost = location.state.isHost;
   const currentUser = location.state.user;
   const history = useHistory();
 
@@ -50,13 +50,13 @@ const RoomPage = () => {
 
   return roomStart 
     ?     <Classroom 
-    host={host}
+    isHost={isHost}
     roomCode={roomCode}
     content={content}
     currentUser={currentUser}
     />
     : <WaitingRoom 
-    host={host}
+    isHost={isHost}
     roomHost={roomHost}
     roomCode={roomCode}
     users={users}

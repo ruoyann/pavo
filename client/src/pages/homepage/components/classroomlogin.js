@@ -78,7 +78,7 @@ const Classroomlogin = ({ username, setInvalidUsername }) => {
           if (error) {
             alert(error);
           } else {
-            history.push(`/room/${code}`, { host: false, user: user });
+            history.push(`/room/${code}`, { isHost: false, user: user });
           }
         }
       );

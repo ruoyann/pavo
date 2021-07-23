@@ -6,7 +6,7 @@ import { Grid } from "@material-ui/core";
 import Header from "../../../components/header";
 
 
-const Classroom = ({ host, roomCode, content, currentUser }) => {
+const Classroom = ({ isHost, roomCode, content, currentUser }) => {
   const [shareWhiteboards, setShareWhiteboards] = useState([]);
 
     socket.on("share-whiteboard", (data) => {
@@ -45,7 +45,7 @@ const Classroom = ({ host, roomCode, content, currentUser }) => {
       </Grid>
       <Grid item xs={12}>
         <BoardContainer
-          host={host}
+          isHost={isHost}
           roomCode={roomCode}
           currentUser={currentUser}
           shareWhiteboards={shareWhiteboards}
