@@ -1,9 +1,11 @@
 const rooms = []
 
-const addRoom = (roomCode) => {
+const addRoom = (roomCode, host) => {
   const newRoom = {
     roomCode,
-    users: []
+    users: [host],
+    started: false,
+    host: host,
   }
   rooms.push(newRoom)
   return newRoom
@@ -16,33 +18,25 @@ const removeRoom = (roomCode) => {
   }
 }
 
-const addUserToRoom = (roomCode, userID) => {
+const addUserToRoom = (roomCode, currentUser) => {
   const room = rooms.find(room => room.roomCode === roomCode)
-  const newUser = {
-    userID
-  }
   if (room) {
     const users = room.users
-    const userExist = users.find(user => user.userID === userID)
+    const userExist = users.find(user => user.username === currentUser.username)
     if (!userExist) {
-      users.push(newUser)
+      users.push(currentUser)
     }
   } else {
-    const newRoom = {
-      roomCode,
-      users: [newUser],
-      messages: [],
-    }
-    rooms.push(newRoom)
+    addRoom(roomCode, currentUser)
   }
-  return userID
+  return currentUser;
 }
 
-const removeUserFromRoom = (roomCode, userID) => {
+const removeUserFromRoom = (roomCode, currentUser) => {
   const room = rooms.find(room => room.roomCode === roomCode)
   if (room) {
     const users = room.users
-    const index = users.findIndex(user => user.userID === userID)
+    const index = users.findIndex(user => user.username === currentUser.username)
     if (index !== -1) {
       room.users.splice(index, 1)
       if (users.length === 0) {
@@ -56,12 +50,18 @@ const getRoom = (roomCode) => {
   return rooms.find(room => room.roomCode === roomCode)
 }
 
-const getRoomWith = (userID) => {
-  return rooms.find(room => room.users.find(user => user.userID === userID))
+const getRoomWith = (currentUser) => {
+  const result = rooms.find(room => room.users.find(user => user.username.localeCompare(currentUser.username) === 0));
+  return result;
 }
 
 const getAllRooms = () => {
   return rooms
+}
+
+const startRoom = (roomCode) => {
+  const currentRoom = rooms.find(room => room.roomCode === roomCode);
+  currentRoom.started = true;
 }
 
 module.exports = {
@@ -71,5 +71,6 @@ module.exports = {
   removeUserFromRoom,
   getRoom,
   getRoomWith,
-  getAllRooms
+  getAllRooms,
+  startRoom
 }
