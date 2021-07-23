@@ -3,8 +3,8 @@
 Pavo - The latin translation of peacock 
 
 We are Yu Cheng, Jeff, Joenz and Ruoyan, and this web app serves to answer the Second Problem Statement about Education: 
-As technology rapidly infiltrates the eeducation sector and changes not just the way people learn, but also how people teach,
-what refreshing ideas do you ahve to make learning and / or teaching more safe, exciting and effective? 
+As technology rapidly infiltrates the education sector and changes not just the way people learn, but also how people teach,
+what refreshing ideas do you have to make learning and / or teaching more safe, exciting and effective? 
 
 ## Our motivation 
 
