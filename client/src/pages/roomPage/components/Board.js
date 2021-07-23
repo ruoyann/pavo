@@ -1,5 +1,5 @@
   
-import { Button } from '@material-ui/core';
+import { Button, Typography, Grid } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import socket from "../../../socket"
 
@@ -146,10 +146,18 @@ class Board extends React.Component {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
+    clearWhiteboard = () => {
+        const canvas = document.getElementById(`board-${this.props.roomCode}-${this.props.username}`);
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        socket.emit("clear", {roomCode: this.props.roomCode, username: this.props.username})
+    }
+
     render() {
 
         return (
-            <div>
+            <Grid item xs={12}>
+                <Typography variant="h5">{this.props.username}</Typography>
                 {this.state.shared 
                 ? <Button onClick={this.stopShare}>
                     Stop sharing whiteboard
@@ -157,12 +165,14 @@ class Board extends React.Component {
                 : <Button onClick={this.handleShare}>
                 Share whiteboard
             </Button>}
-                
+                <Button onClick={this.clearWhiteboard.bind(this)}>
+                    Clear whiteboard
+                </Button>
                 <div class="sketch" id={`sketch-${this.props.roomCode}-${this.props.username}`}>
                     <canvas className="board" id={`board-${this.props.roomCode}-${this.props.username}`} 
-                    style={{border:"1px solid #000000"}}></canvas>
+                    style={{border:"1px solid #000000"}} width="800" height="800"></canvas>
                 </div>
-            </div>
+            </Grid>
         )
     }
 }

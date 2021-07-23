@@ -2,10 +2,20 @@ import React from 'react';
 import Board from './Board';
 import Button from "@material-ui/core/Button";
 import socket from "../../../socket"
+import { List, ListItem, Grid, Typography } from '@material-ui/core';
 
+const UserWhiteboard = (root) => (whiteboard) => {
+    return (
+        <Grid container spacing={2} justifyContent="flex-start">
+                <Board color={root.state.color} size={root.state.size} 
+                roomCode={root.props.roomCode} username={whiteboard.username} image={whiteboard.image}
+                eraseMode ={root.state.erase} currentUser={root.props.currentUser}/>
+        </Grid>
+    );
+}
 
 class Container extends React.Component
-{s
+{
     roomCode;
     constructor(props) {
         super(props);
@@ -41,40 +51,59 @@ class Container extends React.Component
 
 
     render() {
-
         return (
-            <div className="container">
-                <div class="tools-section">
-                    <div className="color-picker-container">
-                        Select Brush Color : &nbsp; 
-                        <input type="color" value={this.state.color} onChange={this.changeColor.bind(this)}/>
-                    </div>
-
-                    <div className="brushsize-container">
-                        Select Brush Size : &nbsp; 
-                        <select value={this.state.size} onChange={this.changeSize.bind(this)}>
-                            <option> 5 </option>
-                            <option> 10 </option>
-                            <option> 15 </option>
-                            <option> 20 </option>
-                            <option> 25 </option>
-                            <option> 30 </option>
-                        </select>
-                    </div>
-                    <Button onClick={this.clearWhiteboard.bind(this)}>
-                        Clear whiteboard
-                    </Button>
-                    <Button onClick={this.changeEraseMode.bind(this)}>
-                        {this.state.erase ? "Stop erasing": "Erase"}
-                    </Button>
+            <Grid container spacing={2} alignItems="center">
+            <Grid item xs={1}>
+                <div style={{border:"1px solid #000000", justifyContent: "center"}}>
+                    <List>
+                        <ListItem>
+                            <div className="color-picker-container">
+                                <Typography variant="body1">
+                                    Brush Color : &nbsp; 
+                                </Typography>
+                                <input type="color" value={this.state.color} onChange={this.changeColor.bind(this)}/>
+                            </div>                            
+                        </ListItem>
+                        <ListItem>
+                            <div className="brushsize-container">
+                                <Typography variant="body1">
+                                    Brush Size : &nbsp; 
+                                </Typography>
+                                <select value={this.state.size} onChange={this.changeSize.bind(this)}>
+                                    <option> 5 </option>
+                                    <option> 10 </option>
+                                    <option> 15 </option>
+                                    <option> 20 </option>
+                                    <option> 25 </option>
+                                    <option> 30 </option>
+                                </select>
+                            </div>                            
+                        </ListItem>
+                        <ListItem>
+                            <Button onClick={this.changeEraseMode.bind(this)}>
+                                {this.state.erase ? "Stop erasing": "Erase"}
+                            </Button>
+                        </ListItem>
+                        <ListItem>
+                        {this.props.host && 
+                            <Button onClick={() => {
+                                if (this.state.focus) {
+                                    socket.emit("get-whiteboards", {roomCode: this.props.roomCode, user: this.props.currentUser})
+                                }
+                                this.setState({...this.state, focus: !this.state.focus})
+                            }}>
+                                {this.state.focus ? "View all" : "View yours"}
+                            </Button>}
+                        </ListItem>
+                    </List>
                 </div>
-
-                <div class="board-container">
-                    <Board color={this.state.color} size={this.state.size} 
-                    roomCode={this.props.roomCode} username={this.props.username} image={this.props.image}
-                    eraseMode ={this.state.erase}/>
-                </div>
-            </div>
+            </Grid>                            
+            <Grid item xs={10}>
+                    {!this.props.host && this.props.shareWhiteboards.map(UserWhiteboard(this))}
+                    {UserWhiteboard(this)(this.props.currentUser)}
+                    {this.props.host && !this.state.focus && this.props.content.map(UserWhiteboard(this))}
+            </Grid>
+        </Grid>
         )
     }
 }
