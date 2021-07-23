@@ -43,7 +43,6 @@ const MakeClassroomButton = ({username}) => {
       }
     }
 
-
     return (
         <Button
         type="submit"

@@ -21,12 +21,12 @@
   },
   "homepage": "https://github.com/ruoyann/peacock#readme",
   "dependencies": {
-    "cross-env": "^7.0.3",
-    "nodemon": "^2.0.12",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "nodemon": "^2.0.12",
     "socket.io": "^4.1.2"
   },
   "devDependencies": {
