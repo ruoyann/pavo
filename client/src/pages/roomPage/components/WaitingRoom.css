@@ -1,0 +1,22 @@
+.container {
+  /* background-color: pink; */
+  text-align: center;
+  width: 70vw;
+  /* border-style: solid; */
+}
+
+.leader {
+  width: 49%;
+  height: 50vh;
+  border-style: solid;
+  /* background-color: red; */
+  float: left;
+}
+
+.users {
+  width: 49%;
+  height: 50vh;
+  border-style: solid;
+  /* background: blue; */
+  float: right;
+}
