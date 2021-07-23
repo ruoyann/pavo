@@ -41,7 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const WaitingRoom = ({ host, roomHost, roomCode, users, content, currentUser }) => {
+const WaitingRoom = ({
+  host,
+  roomHost,
+  roomCode,
+  users,
+  content,
+  currentUser,
+}) => {
   const classes = useStyles();
 
   const startSession = () => {
@@ -55,7 +62,9 @@ const WaitingRoom = ({ host, roomHost, roomCode, users, content, currentUser }) 
   const ParticipantDisplay = (host) => (user) => {
     return (
       <li>
-        {user.username}
+        {roomHost.username === user.username
+          ? roomHost.username + " [Host]"
+          : user.username}
         {host && user.userID !== currentUser.userID && (
           <IconButton edge="end" onClick={() => removeUser(user)}>
             <DeleteIcon />
