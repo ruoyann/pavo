@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 320,
+    width: "100%",
   },
 }));
 
@@ -48,7 +48,6 @@ const UsernameInput = ({ setUsername }) => {
 
   return (
     <div>
-      {/* <Typography variant="h6">Enter your username</Typography> */}
       <TextField
         label="Username"
         id="margin-normal"

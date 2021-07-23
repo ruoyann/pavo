@@ -7,7 +7,6 @@ import BoardContainer from "./BoardContainer";
 import socket from "../../../socket"
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -36,6 +35,30 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+const UserWhiteBoard = (roomCode, host) => (data) => {
+  const username = data.username;
+  const image = data.image;
+
+  const removeUser = (user) => {
+    socket.emit("remove-user", {user: user, roomCode: roomCode});
+  }
+
+  return (
+    <div>
+      <Typography>{username}</Typography>
+      {host && 
+            <IconButton
+                  edge="end"
+                  onClick={() => removeUser({username})}
+                >
+              <DeleteIcon />
+            </IconButton>
+          }
+      <BoardContainer username={username} roomCode={roomCode} image={image}/>
+    </div>
+  );
+}
+
 const Classroom = ({host, roomCode, content, currentUser}) => {
     const [shareWhiteboards, setShareWhiteboards] = useState([]);
 
@@ -51,29 +74,20 @@ const Classroom = ({host, roomCode, content, currentUser}) => {
       const index = shareWhiteboards.findIndex(whiteboard => whiteboard.roomCode === data.roomCode && whiteboard.username === data.username);
       if (index !== -1 && data.username !== currentUser.username) {
         const newWhiteboard = shareWhiteboards.filter(whiteboard => whiteboard.roomCode !== data.roomCode || whiteboard.username !== data.username)
+        console.log("new whiteboards are", newWhiteboard, "original", shareWhiteboards)
         setShareWhiteboards(newWhiteboard);
       }
     })
 
-    const filteredContent = content.filter(x => x.username !== currentUser.username)
-
     return (
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h3">
-              Room {roomCode}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <BoardContainer 
-              host={host}
-              roomCode={roomCode}
-              currentUser={currentUser}
-              shareWhiteboards={shareWhiteboards}
-              content={filteredContent}
-              />
-          </Grid>
-        </Grid>
+        <div>
+        <Typography variant="h3">
+          Room {roomCode}
+        </Typography>
+        {host && content.map(UserWhiteBoard(roomCode, host))}
+        {!host && UserWhiteBoard(roomCode, host)(currentUser)}
+        {!host && shareWhiteboards.map(UserWhiteBoard(roomCode, host))}
+        </div>
     );
 }
 
