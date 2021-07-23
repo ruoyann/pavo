@@ -17,12 +17,12 @@ module.exports = (io, socket) => {
     socket.join(roomCode)
   }
 
-  const onJoining = async (data, callback) => {
+  const userLogin = async (data, callback) => {
     const roomCode = data.roomCode;
     const id = randomId(3);
     const user = {
-      username: data.username, 
-      userID: id, 
+      username: data.username,
+      userID: id,
     }
     const matchingSockets = await io.in(roomCode).allSockets()
     const roomExists = matchingSockets.size >= 1
@@ -37,8 +37,8 @@ module.exports = (io, socket) => {
     }
   }
 
-  const joinedRoom = (data, callback) => {
-    const user = data.user;
+  const userJoinedRoom = (data, callback) => {
+    const user = {username: data.username};
     const roomCode = data.roomCode;
     const room = getRoomWith(user)
     if (room) {
@@ -59,7 +59,7 @@ module.exports = (io, socket) => {
     }
   }
 
-  const start = (roomCode) => {
+  const startSession = (roomCode) => {
     io.to(roomCode).emit('update_session_start', {
       start: true,
     })
@@ -99,10 +99,10 @@ module.exports = (io, socket) => {
   }
 
   socket.on('create', createRoom)
-  socket.on('joining', onJoining)
-  socket.on('userJoined', joinedRoom)
+  socket.on('userLogin', userLogin)
+  socket.on('userJoinedRoom', userJoinedRoom)
   socket.on('leave', leaveRoom)
-  socket.on('startSession', start)
+  socket.on('startSession', startSession)
   socket.on('canvas-data', canvas_data)
   socket.on('clear', clear);
   socket.on('share-whiteboard', onShareWhiteboard)

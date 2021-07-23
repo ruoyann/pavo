@@ -1,9 +1,6 @@
-import logo from "./assets/logo.svg";
 import "./App.css";
 import Homepage from "./pages/homepage/homepage";
-import CreateClassroomPage from "./pages/createClassroomPage/createClassroomPage";
 import WaitingRoomPage from "./pages/roomPage/RoomPage";
-import Header from "./components/header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 
@@ -25,9 +22,7 @@ function App() {
           </div>
         </Route>
         <Route path="/room/:roomCode">
-          {/* <div className="App"> */}
           <WaitingRoomPage />
-          {/* </div> */}
         </Route>
       </Switch>
     </Router>

@@ -26,10 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const history = useHistory();
   const classes = useStyles();
-  const navStyle = {
-    color: "white",
-    textDecoration: "none",
-  };
 
   const handleExit = () => {
     if (window.confirm("Do you want to go home?")) {

@@ -1,6 +1,5 @@
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import React, { useState, useEffect } from "react";
@@ -73,9 +72,9 @@ const Classroomlogin = ({ username, setInvalidUsername }) => {
     } else {
       setInvalidRoomcode(false);
       socket.emit(
-        "joining",
-        { roomCode: code, username: username },
-        ({ error, user }) => {
+        "userLogin",
+        { roomCode: code.toLowerCase().trim(), username: username },
+        ({ error }) => {
           if (error) {
             alert(error);
           } else {

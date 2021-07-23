@@ -1,38 +1,8 @@
 import React, { useState, useEffect } from "react";
 import socket from "../../socket";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from '@material-ui/core/styles';
 import WaitingRoom from "./components/WaitingRoom"
 import Classroom from "./components/ClassRoom"
 import { useLocation, useHistory } from 'react-router-dom';
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  leftIcon: {
-    marginRight: theme.spacing(1),
-  },
-  rightIcon: {
-    marginLeft: theme.spacing(1),
-  },
-  iconSmall: {
-    fontSize: 20,
-  },
-  root: {
-    padding: theme.spacing(3, 2),
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 320,
-  },
-}));
 
 const RoomPage = () => {
   const roomCode = window.location.href.split('/').slice(-1)[0]; // get last fragment of url
@@ -53,7 +23,7 @@ const RoomPage = () => {
 
   useEffect(() => {
     socket.connect();
-    socket.emit('userJoined', {roomCode: roomCode, user: currentUser}, ({started}) => {
+    socket.emit('userJoinedRoom', {roomCode: roomCode, username: username}, ({started}) => {
       setRoomStart(started);
     });
 
