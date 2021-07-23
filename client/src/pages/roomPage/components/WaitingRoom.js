@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -75,10 +77,7 @@ const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
         <Typography variant="h3" style={{ margin: 10 }}>
           Session Leader
         </Typography>
-        <img
-          src={Logo}
-          style={{ width: "50%", height: "50%", margin: 30 }}
-        />
+        <img src={Logo} style={{ width: "50%", height: "50%", margin: 30 }} />
         <Typography variant="h3"> Name </Typography>
       </div>
       <div className="users">

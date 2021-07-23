@@ -19,19 +19,19 @@ function App() {
   return (
     <Router>
       {/* <Header></Header> */}
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
+
+      <Switch>
+        <Route exact path="/">
+          <div className="App">
             <Homepage />
-          </Route>
-          <Route exact path="/createClassroom">
-            <CreateClassroomPage />
-          </Route>
-          <Route path="/room/:roomCode">
-            <WaitingRoomPage />
-          </Route>
-        </Switch>
-      </div>
+          </div>
+        </Route>
+        <Route path="/room/:roomCode">
+          {/* <div className="App"> */}
+          <WaitingRoomPage />
+          {/* </div> */}
+        </Route>
+      </Switch>
     </Router>
   );
 }

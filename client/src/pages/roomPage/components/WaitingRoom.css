@@ -2,6 +2,10 @@
   /* background-color: pink; */
   text-align: center;
   width: 70vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   /* border-style: solid; */
 }
 
