@@ -28,6 +28,7 @@ const RoomPage = () => {
     });
 
     socket.on('update_user', (content) => {
+      console.log(content)
       setUsers(content.users.length)
       setContent(content.users);
       // setRoomStart(content.started);
@@ -41,6 +42,8 @@ const RoomPage = () => {
       setRoomStart(content.start)
     })
   }, [])
+
+  console.log("content in room page", content)
 
 
   return roomStart 

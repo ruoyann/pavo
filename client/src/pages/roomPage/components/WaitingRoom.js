@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const WaitingRoom = ({ host, roomCode, users, content, currentUser }) => {
   const classes = useStyles();
+  console.log("content", content)
 
   const startSession = () => {
     socket.emit("startSession", roomCode);

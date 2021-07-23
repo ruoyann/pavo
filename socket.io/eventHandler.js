@@ -38,7 +38,7 @@ module.exports = (io, socket) => {
   }
 
   const userJoinedRoom = (data, callback) => {
-    const user = {username: data.username};
+    const user = data.user
     const roomCode = data.roomCode;
     const room = getRoomWith(user)
     if (room) {
