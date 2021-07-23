@@ -39,12 +39,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Classroomlogin = ({ username }) => {
+const Classroomlogin = ({ username, setInvalidUsername }) => {
   const classes = useStyles();
   const history = useHistory();
 
   const [code, setCode] = useState("");
   const [show, setShow] = useState(false);
+
+  const [invalidRoomcode, setInvalidRoomcode] = useState(false);
 
   const handleChange = (event) => {
     setCode(event.target.value);
@@ -57,18 +59,19 @@ const Classroomlogin = ({ username }) => {
   const handleClickJoinSession = (event) => {
     event.preventDefault();
     if (username === "") {
-      alert("Please enter a username");
+      setInvalidUsername(true)
     } else {
-      show ? setShow(false) : setShow(true);
+      setInvalidUsername(false)
+      setShow(!show)
     }
   };
 
   const handleEnterClass = (event) => {
     event.preventDefault();
     if (code === "") {
-      alert("Please enter a code!");
+      setInvalidRoomcode(true);
     } else {
-      alert("joining with " + code);
+      setInvalidRoomcode(false);
       socket.emit(
         "joining",
         { roomCode: code, username: username },
@@ -101,6 +104,8 @@ const Classroomlogin = ({ username }) => {
             className={classes.textField}
             onChange={handleChange}
             style={{ width: "60%" }}
+            helperText={invalidRoomcode ? "Please enter a valid classroom code" : ""}
+            error={invalidRoomcode}
           />
 
           <Button
