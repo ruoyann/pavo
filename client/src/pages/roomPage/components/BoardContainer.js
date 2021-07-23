@@ -44,6 +44,7 @@ class Container extends React.Component {
   };
 
   render() {
+    console.log("current user", this.props.currentUser)
     return (
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={1}>
@@ -108,7 +109,7 @@ class Container extends React.Component {
         <Grid item xs={10}>
           {!this.props.host &&
             this.props.shareWhiteboards.map(UserWhiteboard(this))}
-          {UserWhiteboard(this)(this.props.currentUser)}
+          {UserWhiteboard(this)({user: this.props.currentUser})}
           {this.props.host &&
             !this.state.focus &&
             this.props.content.map(UserWhiteboard(this))}
