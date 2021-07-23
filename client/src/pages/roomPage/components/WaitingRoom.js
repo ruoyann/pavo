@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import socket from "../../../socket";
-import Logo from "../../homepage/pavo.png";
+import Logo from "../../../assets/pavo_logo.svg";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Grid } from "@material-ui/core";

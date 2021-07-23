@@ -5,10 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import UsernameInput from "./components/usernameInput";
 import Footer from "../../components/footer";
 
-import Logo from "./pavo.png";
+import Logo from "../../assets/pavo_logo.svg";
 
 import { useSound } from "use-sound";
-import sound from "./peacockSound.m4a";
+import sound from "../../assets/peacockSound.m4a";
 
 const Homepage = () => {
   const [username, setUsername] = useState("");

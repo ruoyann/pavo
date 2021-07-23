@@ -83,8 +83,11 @@ const Classroom = ({ host, roomCode, content, currentUser }) => {
 
   return (
     <Grid container spacing={2}>
-      <Header />
       <Grid item xs={12}>
+        <Header />
+      </Grid>
+      <Grid item xs={1} />
+      <Grid item xs={11}>
         <Typography variant="h3">Room {roomCode}</Typography>
       </Grid>
       <Grid item xs={12}>
