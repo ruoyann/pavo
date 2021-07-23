@@ -74,7 +74,7 @@ const Classroomlogin = ({ username, setInvalidUsername }) => {
       socket.emit(
         "userLogin",
         { roomCode: code.toLowerCase().trim(), username: username },
-        ({ error }) => {
+        ({ error, user }) => {
           if (error) {
             alert(error);
           } else {

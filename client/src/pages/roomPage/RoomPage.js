@@ -23,7 +23,7 @@ const RoomPage = () => {
 
   useEffect(() => {
     socket.connect();
-    socket.emit('userJoinedRoom', {roomCode: roomCode, username: username}, ({started}) => {
+    socket.emit('userJoinedRoom', {roomCode: roomCode, user: currentUser}, ({started}) => {
       setRoomStart(started);
     });
 
