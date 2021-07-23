@@ -9,7 +9,7 @@
     "start": "cross-env NODE_ENV=production nodemon index.js",
     "lint": "eslint .",
     "format": "eslint . --fix",
-    "install": "cd client && npm run build"
+    "pre-heroku": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
