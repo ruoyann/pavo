@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import socket from "../../../socket";
+import socket from "../../../socket.js";
 
 const useStyles = makeStyles((theme) => ({
   button: {
