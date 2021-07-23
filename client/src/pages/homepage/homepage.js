@@ -13,7 +13,7 @@ const Homepage = () => {
   const [username, setUsername] = useState("");
   const [play] = useSound(sound);
   return (
-    <div>
+    <div className="App">
       <img
         src={Logo}
         alt="..."

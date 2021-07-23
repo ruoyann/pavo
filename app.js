@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 require('express-async-errors')
+const middleware = require('./utils/middleware')
 const cors = require('cors')
 
 // force https on heroku
@@ -15,9 +16,18 @@ if(process.env.NODE_ENV === 'production') {
   })
 }
 
-// app.use('/', express.static('client')) // look in the build directory to serve frontend
+app.use('/', express.static('client/build')) // look in the build directory to serve frontend
 
 app.use(cors())
 app.use(express.json())
+
+app.get('/api', function (req, res){
+  console.log('hello')
+  res.send('hello world')
+})
+
+app.use(middleware.unknownEndpoint)
+
+app.use('/*', express.static('build'))
 
 module.exports = app
