@@ -1,13 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Homepage from "./pages/homepage/homepage";
+import Header from "./components/header";
 import CreateClassroomPage from "./pages/createClassroomPage/createClassroomPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-      <div>
+      <Header />
+      <div className="App">
         <Switch>
           <Route exact path="/">
             <Homepage />
