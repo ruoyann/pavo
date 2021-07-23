@@ -1,0 +1,35 @@
+{
+  "name": "peacock-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start": "cross-env NODE_ENV=production nodemon index.js",
+    "lint": "eslint .",
+    "format": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruoyann/peacock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruoyann/peacock/issues"
+  },
+  "homepage": "https://github.com/ruoyann/peacock#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.12",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
+}
