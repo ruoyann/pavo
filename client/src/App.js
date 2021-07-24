@@ -1,31 +1,30 @@
 import "./App.css";
 import Homepage from "./pages/homepage/homepage";
-import WaitingRoomPage from "./pages/roomPage/RoomPage";
+import RoomPage from "./pages/roomPage/RoomPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    justifyItems: "center",
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Quicksand',
+    fontWeightRegular: 500,
+    body1: {
+      fontSize: '1.1rem',
+    }
   },
-}));
+});
 
 function App() {
-  const classes = useStyles();
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <Switch>
-        <Route exact path="/">
-          <div className="App">
-            <Homepage />
-          </div>
-        </Route>
-        <Route path="/room/:roomCode">
-          <WaitingRoomPage />
-        </Route>
+        <Route exact path="/" component={Homepage} />
+        <Route path="/room/:roomCode" component={RoomPage} />
       </Switch>
     </Router>
+    </ThemeProvider>
   );
 }
 
