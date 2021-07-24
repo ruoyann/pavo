@@ -2,7 +2,7 @@
 
 🦚 _Show your feathers with our collaborative whiteboard app_ 🦚
 
-This hack was submitted for the **Education** category. Check out our [demo](https://pavopavopavo.herokuapp.com) and [video walkthrough](https://drive.google.com/file/d/18wHvIIbPguGHFeyEzU-_Cjt3xo7c7vcK/view?usp=sharing)!
+This hack was submitted for the **Education** category of [Lifehack](https://lifehack-2021.devpost.com), a hackathon about the post-covid world. Check out our [demo](https://pavopavopavo.herokuapp.com) and [video walkthrough](https://drive.google.com/file/d/18wHvIIbPguGHFeyEzU-_Cjt3xo7c7vcK/view?usp=sharing)!
 
 ## Inspiration
 In this post-covid world, hybrid learning is the new normal. Students can be in a classroom and their education is augmented with technology, or educators can teach remotely from the comfort of their homes.
