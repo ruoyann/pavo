@@ -179,7 +179,6 @@ class Board extends React.Component {
     }
 
     render() {
-        console.log("props are in render", this.props)
         return (
             <Grid item xs={12}>
                 <Typography variant="h5">{this.props.user ? this.props.user.username : ""}</Typography>

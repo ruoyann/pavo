@@ -33,7 +33,6 @@ const RoomPage = () => {
       setUsers(content.users.length)
       setContent(content.users);
       setRoomHost(content.roomHost);
-      // setRoomStart(content.started);
       if (currentUser.username.length !== 0 && content.users.findIndex(user => user.userID === currentUser.userID) === -1) {
         history.push("/");
         alert("Sorry, you have been removed by the host");

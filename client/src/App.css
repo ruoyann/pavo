@@ -32,3 +32,12 @@ body {
     width: 1.2ch;
   }
 }
+
+.userPalette {
+  position: fixed;
+  top: 50%;
+}
+
+.boards {
+  margin-left: 8vw !important;
+}

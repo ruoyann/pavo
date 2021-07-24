@@ -47,7 +47,7 @@ class Container extends React.Component {
     console.log("current user", this.props.currentUser)
     return (
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={1}>
+        <Grid item xs={1} className="userPalette">
           <div
             style={{ border: "1px solid #000000", justifyContent: "center" }}
           >
@@ -106,7 +106,7 @@ class Container extends React.Component {
             </List>
           </div>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={10} className="boards">
           {!this.props.isHost &&
             this.props.shareWhiteboards.map(UserWhiteboard(this))}
           {UserWhiteboard(this)({user: this.props.currentUser})}
