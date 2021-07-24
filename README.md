@@ -1,25 +1,26 @@
-# PAVO
+# 🦚 PAVO
 
-Pavo - The latin translation of peacock
+🦚 _Show your feathers with our collaborative whiteboard app_ 🦚
 
-We are Yu Cheng, Jeff, Joenz and Ruoyan, and this web app serves to answer the Second Problem Statement about Education:
-As technology rapidly infiltrates the education sector and changes not just the way people learn, but also how people teach,
-what refreshing ideas do you have to make learning and / or teaching more safe, exciting and effective?
+**Pavo** is our submission for [Lifehack 2021](https://lifehack-2021.devpost.com), a virtual hackathon for a post-covid world.
 
-## Our motivation
+This hack was submitted for the **Education** category. Check out our [demo](pavopavopavo.herokuapp.com)!
+
+## Motivation
 
 In this post covid world, hybrid learning is the new normal. Students can be in a classroom and their education is augmented
 with technology, or educators can teach remotely from the comfort of their homes. Pavo aims to make the transition to hybrid
 learning easy.
 
-Pavo is a virtual whiteboard that allows for collaboration between teachers and students.
+Pavo is a virtual whiteboard that makes collaboration between teachers and students easy.
 
-Peacocks love to display their colourful feathers. Similarly, in classrooms, we hope that students have the courage to show
-off their knowledge and answers. It is a common experience for students who are more introverted to stay quiet in class due
-to the reluctance to raise their hands or walk to the whiteboard. With this application, shy students can choose to submit
-answers anonymously to the teachers while the teachers look at their screens that consist of all students’ whiteboards in
-real time. Eventually, learning experience in a classroom setting is enhanced, as students are more willing to contribute to
-class discussions, while teachers are enabled to better understand students’ struggles.
+Pavo is the Latin word for _peacock_, and as we know, peacocks love to display their colourful feathers. Similarly, in classrooms,
+we hope that students have the courage to show off their knowledge and answers. It is a common experience for students who are
+more introverted to stay quiet in class due to the reluctance to raise their hands or walk to the whiteboard. 
+
+With this application, shy students can choose to submit their answers to the teachers while the teachers look at their screens that consist of all students’ 
+whiteboards in real time. Learning experience in a classroom setting is enhanced, as students are more willing to contribute
+to class discussions, while teachers are enabled to better understand students’ struggles.
 
 ## Current Situation
 
@@ -37,21 +38,25 @@ From all these situations, there are some inconveniences, namely:
 4. Performance anxiety: If students are randomly called upon to the front to try a question out, they may be anxious that they do something incorrect while everyone is watching them write on the whiteboard
 5. Not everyone is trying the question: Only those that were called upon by the teacher try the question while the rest just watch
 
-## Our solution
+## Solution
 
 To help tackle these inconveniences, our team has come up with Pavo, an interactive real-time whiteboard to aid in facilitating lessons.
 
-Pavo aims to provide teachers with canvases that can be displayed across to all devices in the class. With tablets such as iPads being distributed to students, all the teacher has to do is create a room, and students join the room using the unique room ID.
+### Physical setting
+Pavo provides teachers with canvases that can be displayed across to all devices in the class. With tablets such as iPads being distributed to students, all the teacher has to do is create a room, and students join the room using the unique room ID.
 
 Now all students will have a closer view of the whiteboard, and will not have a difficult time looking at the whiteboard at the front of the classroom.
 
-Each student will also be provided with their own canvas, in which they can write down their own questions, or their working to the questions posed by the teacher. The teacher can look through all students canvases to view any questions or view their students working from their side.
+Each student will also be provided with their own canvas, in which they can write down their own questions, or their working to the questions posed by the teacher. The teacher can look through all students canvases.
 
-If the teacher wishes for a student to share their whiteboard to the class, the student can press share whiteboard and their whiteboard will be shown to everyone in the room. Otherwise, student whiteboards will be hidden from the other students.
+Teachers can also highlight certain student's whiteboards.
 
-We believe that by removing this performance anxiety, students will be given a comfortable environment to show their full potential
+We believe that by removing this performance anxiety, students will be given a comfortable environment to show their full potential.
 
-## Current features
+### Virtual setting
+Pavo helps with remote learning where teachers and students can view each others' work in real time. This helps when a teacher is trying to step through a student's working, and understand their thought processes.
+
+## Features
 
 1. Ability to create rooms and join rooms with a provided username
 2. Waiting room:
@@ -60,15 +65,12 @@ We believe that by removing this performance anxiety, students will be given a c
    - Host can start session
    - User must wait for host to start session
 3. Rooms:
-   - Real time collaborative whiteboard: Multi editting and viewing
+   - Real time collaborative whiteboard: Multi editing and viewing
    - Share whiteboard: Share with other users in the room
-   - Eraser: Erase what you drew incorrectly
-   - Clear whiteboard: Clear the canvas
-   - Draw on other peoples whiteboard: Ability to draw on others whiteboards if being shared
-   - For host, can view all users whiteboards to view progress
-   - Can click logo at the top to go back to home page
+   - Host can view all users whiteboards to view progress
+4. As well as an easter egg! 😉🦚🦚🦚🦚🦚 (hint: keep your speakers on!)
 
-## Down the road
+## Future Plans
 
 We aim to fix these bugs in the future
 
@@ -76,6 +78,16 @@ We aim to fix these bugs in the future
 
 ## Running our app
 
-1. git clone our repository
-2. npm install, npm start
-3. cd client, npm install, npm start
+1. `git clone` our repository
+2. `npm install`, `npm start` (in root directory)
+3. `cd client`, `npm install`, `npm start`
+
+### Deploys
+
+We deploy our app using Heroku. `npm run build` in the client directory before pushing.
+
+## The Team
+- Chan Yu Cheng
+- Jefferson Lim
+- Joenz Kim-Chan
+- Yin Ruoyan
