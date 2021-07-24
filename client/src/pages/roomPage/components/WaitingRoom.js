@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./WaitingRoom.css";
 import Footer from "../../../components/footer";
+import { Tooltip, Paper } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -17,28 +18,7 @@ const useStyles = makeStyles((theme) => ({
     width: 400,
     fontSize: 30,
     margin: theme.spacing(3),
-  },
-  leftIcon: {
-    marginRight: theme.spacing(1),
-  },
-  rightIcon: {
-    marginLeft: theme.spacing(1),
-  },
-  iconSmall: {
-    fontSize: 20,
-  },
-  root: {
-    padding: theme.spacing(3, 2),
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 320,
-  },
+  }
 }));
 
 const WaitingRoom = ({
@@ -66,32 +46,37 @@ const WaitingRoom = ({
           ? roomHost.username + " [Host]"
           : user.username}
         {isHost && user.userID !== currentUser.userID && (
+          <Tooltip title="Kick user from room">
           <IconButton edge="end" onClick={() => removeUser(user)}>
             <DeleteIcon />
           </IconButton>
+          </Tooltip>
         )}
       </li>
     );
   };
 
   return (
-    <div className="container">
+    <div className="waitingRoom">
       <Typography variant="h2" style={{ margin: 10 }}>
         You are in room {roomCode}
       </Typography>
-      <div className="leader">
+      <div className="waitingRoom__content">
+      <Paper className="leader waitingRoom__paper" elevation={3}>
         <Typography variant="h3" style={{ margin: 10 }}>
           Session Leader
         </Typography>
         <img src={Logo} alt="logo" style={{ width: "50%", minWidth: "50%" }} />
         <Typography variant="h3"> {roomHost.username} </Typography>
-      </div>
-      <div className="users">
-        <Typography variant="h6">
-          Users in room: {users} <br />
-          List of users:
+      </Paper>
+      <Paper className="users waitingRoom__paper" elevation={3}>
+        <Typography variant="h6" align="center">
+          Users
+        </Typography>
+        <Typography variant="body1" align="center" style={{width: '60%'}}>
           <ol>{content.length > 0 && content.map(ParticipantDisplay(isHost))}</ol>
         </Typography>
+      </Paper>
       </div>
       {isHost && (
         <Button
@@ -106,8 +91,8 @@ const WaitingRoom = ({
         </Button>
       )}
       {!isHost && (
-        <Typography variant="h6">
-          Please wait for host to start meeting
+        <Typography variant="h6" className="loading">
+          Waiting for host to start meeting
         </Typography>
       )}
       <Footer />

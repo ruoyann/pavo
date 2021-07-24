@@ -1,26 +1,30 @@
-.container {
-  /* background-color: pink; */
+.waitingRoom {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.waitingRoom__content {
   width: 70vw;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* border-style: solid; */
+  flex-direction: row;
+  display: flex;
+}
+
+.waitingRoom__paper {
+  margin: 10px;
+  padding: 10px;
 }
 
 .leader {
-  width: 49%;
+  width: 50%;
   height: 50vh;
-  border-style: solid;
-  /* background-color: red; */
-  float: left;
 }
 
 .users {
-  width: 49%;
+  width: 50%;
   height: 50vh;
-  border-style: solid;
-  /* background: blue; */
-  float: right;
+  text-align: center;
 }

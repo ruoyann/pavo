@@ -4,28 +4,10 @@ import React, { useEffect } from "react";
 import socket from "../../../socket";
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  leftIcon: {
-    marginRight: theme.spacing(1),
-  },
-  rightIcon: {
-    marginLeft: theme.spacing(1),
-  },
-  iconSmall: {
-    fontSize: 20,
-  },
-  root: {
-    padding: theme.spacing(3, 2),
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(2),
     width: "100%",
   },
 }));
@@ -42,7 +24,6 @@ const UsernameInput = ({ setUsername, invalidUsername }) => {
   }, []);
 
   return (
-    <div>
       <TextField
         label="Username"
         id="margin-normal"
@@ -52,7 +33,6 @@ const UsernameInput = ({ setUsername, invalidUsername }) => {
         helperText={invalidUsername ? "Please enter a username" : ""}
         error={invalidUsername}
       />
-    </div>
   );
 };
 

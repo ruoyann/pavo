@@ -9,7 +9,7 @@ const Footer = () => {
         A whiteboard for a fun and interactive classroom experience
       </Typography>
       <Typography variant="body2" align="center">
-        Made for Lifehack 2021
+        🦚 Made for Lifehack 2021 🦚
       </Typography>
     </div>
   );

@@ -14,26 +14,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     margin: theme.spacing(1),
   },
-  leftIcon: {
-    marginRight: theme.spacing(1),
-  },
-  rightIcon: {
-    marginLeft: theme.spacing(1),
-  },
-  iconSmall: {
-    fontSize: 20,
-  },
-  root: {
-    padding: theme.spacing(3, 2),
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    // width: 320,
     width: "84%",
   },
 }));
@@ -86,7 +69,7 @@ const Classroomlogin = ({ username, setInvalidUsername }) => {
   };
 
   return (
-    <div>
+    <>
       <Button
         variant="contained"
         className={classes.button}
@@ -95,7 +78,7 @@ const Classroomlogin = ({ username, setInvalidUsername }) => {
         Join a session
       </Button>
       {show ? (
-        <div style={{ marginBottom: 10 }}>
+        <div style={{ marginBottom: 10, width: '100%' }}>
           <TextField
             label="Classroom code"
             id="margin-normal"
@@ -124,7 +107,7 @@ const Classroomlogin = ({ username, setInvalidUsername }) => {
           </Button>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 
