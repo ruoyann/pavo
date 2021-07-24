@@ -5,15 +5,20 @@ import socket from "../../../socket";
 import { List, ListItem, Grid, Typography } from "@material-ui/core";
 
 const UserWhiteboard = (root) => (whiteboard) => {
-    return (
-        <Grid container spacing={2} justifyContent="flex-start">
-                <Board color={root.state.color} size={root.state.size} 
-                roomCode={root.props.roomCode} user={whiteboard.user} image={whiteboard.image}
-                eraseMode ={root.state.erase} currentUser={root.props.currentUser}/>
-        </Grid>
-    );
-}
-
+  return (
+    <Grid container spacing={2} justifyContent="flex-start">
+      <Board
+        color={root.state.color}
+        size={root.state.size}
+        roomCode={root.props.roomCode}
+        user={whiteboard.user}
+        image={whiteboard.image}
+        eraseMode={root.state.erase}
+        currentUser={root.props.currentUser}
+      />
+    </Grid>
+  );
+};
 
 class Container extends React.Component {
   roomCode;
@@ -44,12 +49,21 @@ class Container extends React.Component {
   };
 
   render() {
-    console.log("current user", this.props.currentUser)
+    console.log("current user", this.props.currentUser);
     return (
-      <Grid container spacing={2} alignItems="center">
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        // style={{ backgroundColor: "pink" }}
+      >
         <Grid item xs={1} className="userPalette">
           <div
-            style={{ border: "1px solid #000000", justifyContent: "center" }}
+            style={{
+              border: "1px solid #000000",
+              justifyContent: "center",
+              // backgroundColor: "pink",
+            }}
           >
             <List>
               <ListItem>
@@ -106,10 +120,10 @@ class Container extends React.Component {
             </List>
           </div>
         </Grid>
-        <Grid item xs={10} className="boards">
+        <Grid item xs={11} className="boards">
           {!this.props.isHost &&
             this.props.shareWhiteboards.map(UserWhiteboard(this))}
-          {UserWhiteboard(this)({user: this.props.currentUser})}
+          {UserWhiteboard(this)({ user: this.props.currentUser })}
           {this.props.isHost &&
             !this.state.focus &&
             this.props.content.map(UserWhiteboard(this))}
