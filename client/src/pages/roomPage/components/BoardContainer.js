@@ -2,7 +2,7 @@ import React from "react";
 import Board from "./Board";
 import Button from "@material-ui/core/Button";
 import socket from "../../../socket";
-import { List, ListItem, Grid, Typography } from "@material-ui/core";
+import { List, ListItem, Grid, Typography, Select, MenuItem } from "@material-ui/core";
 
 const UserWhiteboard = (root) => (whiteboard) => {
   return (
@@ -49,26 +49,23 @@ class Container extends React.Component {
   };
 
   render() {
-    console.log("current user", this.props.currentUser);
     return (
       <Grid
         container
         spacing={2}
         alignItems="center"
-        // style={{ backgroundColor: "pink" }}
       >
         <Grid item xs={1} className="userPalette">
           <div
             style={{
               border: "1px solid #000000",
               justifyContent: "center",
-              // backgroundColor: "pink",
             }}
           >
             <List>
               <ListItem>
                 <div className="color-picker-container">
-                  <Typography variant="body1">Brush Color : &nbsp;</Typography>
+                  <Typography variant="body1">Brush Color</Typography>
                   <input
                     type="color"
                     value={this.state.color}
@@ -78,18 +75,18 @@ class Container extends React.Component {
               </ListItem>
               <ListItem>
                 <div className="brushsize-container">
-                  <Typography variant="body1">Brush Size : &nbsp;</Typography>
-                  <select
+                  <Typography variant="body1">Brush Size</Typography>
+                  <Select
                     value={this.state.size}
                     onChange={this.changeSize.bind(this)}
                   >
-                    <option> 5 </option>
-                    <option> 10 </option>
-                    <option> 15 </option>
-                    <option> 20 </option>
-                    <option> 25 </option>
-                    <option> 30 </option>
-                  </select>
+                    <MenuItem value={5}> 5 </MenuItem>
+                    <MenuItem value={10}> 10 </MenuItem>
+                    <MenuItem value={15}> 15 </MenuItem>
+                    <MenuItem value={20}> 20 </MenuItem>
+                    <MenuItem value={25}> 25 </MenuItem>
+                    <MenuItem value={30}> 30 </MenuItem>
+                  </Select>
                 </div>
               </ListItem>
               <ListItem>
